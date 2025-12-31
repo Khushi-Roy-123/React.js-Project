@@ -1,0 +1,38 @@
+.todo-item {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.todo-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.todo-item.completed {
+    background: rgba(100, 255, 100, 0.2);
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.todo-text {
+    flex-grow: 1;
+    margin: 0 10px;
+    font-size: 1.1rem;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.delete-btn:hover {
+    transform: scale(1.2) rotate(10deg);
+}

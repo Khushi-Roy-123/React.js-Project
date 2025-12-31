@@ -1,0 +1,78 @@
+:root {
+  --bg-sunny: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  --bg-rainy: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+  --bg-cold: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+  --bg-default: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+
+  --text-dark: #2c3e50;
+  --text-light: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: var(--bg-default);
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
+}
+
+.weather-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 20px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 2rem;
+  color: var(--text-dark);
+}
+
+.heading {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Material UI Overrides if needed, but we will try to use custom classes mostly */
+.MuiButton-contained {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(5px);
+  color: white !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+}
+
+.MuiButton-contained:hover {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.MuiTextField-root input {
+  color: white !important;
+}
+
+.MuiTextField-root label {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}

@@ -1,0 +1,97 @@
+.game-container {
+    background: #2a2a2a;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 400px;
+    max-width: 90vw;
+    color: white;
+}
+
+.stats-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 10px;
+}
+
+.level-badge {
+    background: #ffd700;
+    color: black;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px #ffd700;
+}
+
+.xp-bar-container {
+    flex-grow: 1;
+    background: #444;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #666;
+}
+
+.xp-bar-fill {
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    height: 100%;
+    transition: width 0.5s ease-out;
+}
+
+.xp-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    text-shadow: 1px 1px 2px black;
+    width: 100%;
+    text-align: center;
+}
+
+.inventory-title {
+    text-align: center;
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    /* Fallback */
+    margin-bottom: 1rem;
+    color: #00bcd4;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.todo-input-group {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.todo-input-group input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.todo-input-group button {
+    padding: 10px 20px;
+    background: #00bcd4;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.todo-input-group button:hover {
+    background: #008ba3;
+}
+
+.list-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
