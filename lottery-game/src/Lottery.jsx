@@ -98,7 +98,7 @@ export default function Lottery({ n = 3, winCondition }) {
                 <History history={history} />
             </div>
 
-            <p className="absolute bottom-4 text-gray-400 text-xs font-light"></p>
+
         </div>
     );
 }
