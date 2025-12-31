@@ -1,16 +1,24 @@
-:root {
-  --bg-sunny: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-  --bg-rainy: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
-  --bg-cold: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
-  --bg-default: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
-  --text-dark: #2c3e50;
-  --text-light: #ffffff;
+:root {
+  --bg-sunny: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+  /* Soft Pastel */
+  --bg-rainy: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  /* Deep Grey */
+  --bg-cold: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  /* Icy Blue */
+  --bg-default: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  /* Fresh Blue */
+
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  --text-color: #fff;
 }
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Outfit', sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   display: flex;
@@ -18,61 +26,157 @@ body {
   align-items: center;
   background-image: var(--bg-default);
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  transition: background-image 0.5s ease-in-out;
+  transition: background-image 0.8s ease-in-out;
+  color: var(--text-color);
 }
 
 .weather-container {
   width: 100%;
-  max-width: 450px;
-  margin: 20px;
+  max-width: 420px;
+  padding: 20px;
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 2rem;
-  color: var(--text-dark);
+  background: var(--glass-bg);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  padding: 2.5rem;
+  color: var(--text-color);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .heading {
   text-align: center;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 0.5rem;
   color: #fff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  letter-spacing: -0.5px;
 }
 
-/* Material UI Overrides if needed, but we will try to use custom classes mostly */
-.MuiButton-contained {
-  background-color: rgba(255, 255, 255, 0.3) !important;
-  backdrop-filter: blur(5px);
-  color: white !important;
-  box-shadow: none !important;
-  font-weight: 600 !important;
+/* Glass Inputs */
+.glass-input {
+  width: 100%;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
 }
 
-.MuiButton-contained:hover {
-  background-color: rgba(255, 255, 255, 0.4) !important;
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.MuiTextField-root input {
-  color: white !important;
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
 }
 
-.MuiTextField-root label {
-  color: rgba(255, 255, 255, 0.8) !important;
+.glass-input.error {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  animation: shake 0.5s ease-in-out;
 }
 
-.MuiOutlinedInput-notchedOutline {
-  border-color: rgba(255, 255, 255, 0.5) !important;
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
 }
 
-.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-  border-color: white !important;
+/* Glass Button */
+.glass-btn {
+  background: white;
+  color: #4facfe;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.glass-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: #f0f9ff;
+}
+
+.glass-btn:active {
+  transform: translateY(0);
+}
+
+/* Info Box Stats */
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 15px;
+  border-radius: 20px;
+  transition: transform 0.3s ease, background 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 600;
 }

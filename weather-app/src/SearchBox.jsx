@@ -1,29 +1,31 @@
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBox({ updateInfo }) {
     let [city, setCity] = useState("");
     let [error, setError] = useState(false);
 
     // Mock API logic same as before...
-    const API_URL = "http://api.openweathermap.org/data/2.5/weather";
-    const API_KEY = "1031e82180981b48e6b9fba105594774";
+    const API_URL = "https://api.openweathermap.org/data/2.5/weather";
+    const API_KEY = import.meta.env.VITE_API_KEY;
 
     let getWeatherInfo = async () => {
         try {
-            // Simulated fake logic for demo
-            const mockData = {
-                temp: Math.floor(Math.random() * 35),
-                tempMin: 20,
-                tempMax: 35,
-                humidity: Math.floor(Math.random() * 100),
-                feelsLike: 28,
-                weather: Math.random() > 0.5 ? "haze" : "rain",
-                city: city || "Sample City"
-            };
-            return mockData;
+            let response = await fetch(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`);
+            let jsonResponse = await response.json();
+
+            if (jsonResponse.cod !== 200) throw new Error(jsonResponse.message);
+
+            let result = {
+                city: jsonResponse.name,
+                temp: jsonResponse.main.temp,
+                tempMin: jsonResponse.main.temp_min,
+                tempMax: jsonResponse.main.temp_max,
+                humidity: jsonResponse.main.humidity,
+                feelsLike: jsonResponse.main.feels_like,
+                weather: jsonResponse.weather[0].description,
+            }
+            return result;
         } catch (err) {
             throw err;
         }
@@ -47,22 +49,20 @@ export default function SearchBox({ updateInfo }) {
 
     return (
         <div style={{ marginBottom: '2rem' }}>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px' }}>
-                <TextField
-                    id="city"
-                    label="Search City"
-                    variant="outlined"
-                    required
-                    value={city}
-                    onChange={handleChange}
-                    fullWidth
-                    size="small"
-                    error={error}
-                    helperText={error && "City not found!"}
-                />
-                <Button variant="contained" type="submit" startIcon={<SearchIcon />}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '15px' }}>
+                <div style={{ flex: 1, position: 'relative' }}>
+                    <input
+                        className={`glass-input ${error ? 'error' : ''}`}
+                        placeholder={error ? "City not found!" : "Search City..."}
+                        value={city}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <button className="glass-btn" type="submit">
+                    <SearchIcon />
                     Search
-                </Button>
+                </button>
             </form>
         </div>
     );
